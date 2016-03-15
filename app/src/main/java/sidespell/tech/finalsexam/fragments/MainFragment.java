@@ -61,6 +61,7 @@ public class MainFragment extends ListFragment {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 if (mOnTopicItemClickListener != null) {
                     mOnTopicItemClickListener.onItemClick(position);
+
                 }
             }
         });

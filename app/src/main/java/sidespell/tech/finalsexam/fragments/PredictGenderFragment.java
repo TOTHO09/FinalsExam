@@ -50,7 +50,7 @@ public class PredictGenderFragment extends Fragment implements View.OnClickListe
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         mEtName.requestFocus();
-        mAdapter = new ArrayAdapter<>(getContext(),
+        mAdapter = new ArrayAdapter<>(getActivity(),
                 android.R.layout.simple_list_item_1, new ArrayList<String>());
         mListView.setAdapter(mAdapter);
     }
@@ -61,10 +61,12 @@ public class PredictGenderFragment extends Fragment implements View.OnClickListe
 
         // TODO: Appropriately execute getting the gender info task in a background thread
         if (TextUtils.isEmpty(name)) {
-            mEtName.setError(getContext().getString(R.string.txt_enter_name));
+            mEtName.setError(getActivity().getString(R.string.txt_enter_name));
         } else {
             mEtName.setError(null);
         }
+        GetGenderTask getGenderTask = new GetGenderTask();
+        getGenderTask.execute(name);
     }
 
     private class GetGenderTask extends AsyncTask<String, Void, String> {
@@ -82,6 +84,8 @@ public class PredictGenderFragment extends Fragment implements View.OnClickListe
                 throw new RuntimeException("There has to be at least one parameter passed and should " +
                         "be a name");
             }
+            else
+
 
             // TODO: Implement the logic to get the gender given a specified name
             return null;
